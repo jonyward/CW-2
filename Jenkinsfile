@@ -11,6 +11,13 @@ pipeline {
                                 echo 'Building the application'
                                 sh "docker build -t " + image
                         }
-                }        
+                }
+
+                stage('Push to dockerhub') {
+                        steps{
+                                echo 'Pushing to dockerhub'
+                                sh "docker push " + image
+                        }
+                }
         }
 }
