@@ -24,9 +24,18 @@ pipeline {
                 }
 
                 stage('Build container') {
-                        steps {
+                        steps{
                                 echo 'Running the container'
-                                sh "docker run --rm --name Application -p 80:80 -d " + image
+                                sh "docker run --rm --name app -p 80:80 -d " + image
+                        }
+                }
+
+                stage('Deploy to kubernetes') {
+                        steps{
+                                echo 'Deploying container to kubernetes'
+                                script{
+                                        kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "mykubeconfig")
+                                }
                         }
                 }
         }
