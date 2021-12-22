@@ -3,7 +3,7 @@ pipeline {
         agent any
 
         environment {
-                image = "jonyward/app"
+                image = "jonyward/app ."
         }
         stages{
                 stage('Build docker image') {
