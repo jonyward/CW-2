@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: app
-        image: jonyward/test:latest
+        image: jonyward/app:latest
         ports:
         - containerPort: 80
