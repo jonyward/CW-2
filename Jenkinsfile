@@ -3,8 +3,8 @@ pipeline {
         agent any
 
         environment {
-                imageForBuild = "jonyward/app ."
-                image = "jonyward/app"
+                imageForBuild = "jonyward/test ."
+                image = "jonyward/test"
         }
         stages{
                 stage('Build docker image') {
@@ -27,15 +27,6 @@ pipeline {
                         steps{
                                 echo 'Running the container'
                                 sh "docker run --rm --name app -p 80:80 -d " + image
-                        }
-                }
-
-                stage('Deploy to kubernetes') {
-                        steps{
-                                echo 'Deploying container to kubernetes'
-                                script{
-                                        kubernetesDeploy(configs: "deployment.yml", kubeconfigId: "mykubeconfig")
-                                }
                         }
                 }
         }
