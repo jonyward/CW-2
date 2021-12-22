@@ -4,7 +4,7 @@ pipeline {
 
         environment {
                 imageForBuild = "jonyward/app ."
-                imageForPush = "jonyward/app"
+                image = "jonyward/app"
         }
         stages{
                 stage('Build docker image') {
@@ -16,8 +16,9 @@ pipeline {
 
                 stage('Push to dockerhub') {
                         steps{
-                                echo 'Pushing to dockerhub'
-                                sh "docker push " + imageForPush
+                                withDockerRegistry([ credentialsId: "jonyward-dockerhub", url: "" ]){
+                                        sh "docker push " + image
+                                }
                         }
                 }
         }
