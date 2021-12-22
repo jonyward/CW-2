@@ -1,13 +1,16 @@
 pipeline {
 
-        agent
+        agent any
 
         environment {
                 image = "jonyward/app"
         }
-        stage('Build docker image') {
-                steps{
-                        sh "docker build -t " + image
-                }
+        stages{
+                stage('Build docker image') {
+                        steps{
+                                echo 'Building the application'
+                                sh "docker build -t " + image
+                        }
+                }        
         }
 }
