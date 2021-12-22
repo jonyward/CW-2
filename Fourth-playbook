@@ -1,0 +1,13 @@
+- name: CW2 Playbook
+  hosts: localhost
+  user: ubuntu
+
+  tasks:
+
+  - name: Create service
+    shell:
+      cmd: kubectl expose deployment/kubernetes-server --type="NodePort" --port 80 --name server-service
+
+  - name: Scale app
+    shell:  
+      cmd: kubectl scale deployments/kubernetes-server --replicas=4

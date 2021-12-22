@@ -1,0 +1,13 @@
+- name: CW2 Playbook
+  hosts: localhost
+  user: ubuntu
+
+  tasks:
+
+  - name: Pull Docker image
+    shell:
+      cmd: docker pull jonyward/server.js
+
+  - name: Deploy to kubernetes
+    shell:
+      cmd: kubectl create deployment kubernetes-server --image=jonyward/server.js 

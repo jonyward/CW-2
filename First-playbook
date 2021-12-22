@@ -1,0 +1,41 @@
+- name: CW2 Playbook
+  hosts: localhost
+  user: ubuntu
+  become: yes
+
+  tasks:
+
+  - name: Update package manager
+    apt:
+      update_cache: yes
+
+  - name: Install application
+    apt:
+      update_cache: yes
+      name: default-jdk
+      state: absent
+
+  - name: Install an application
+    apt:
+      name={{ item }}
+    with_items:
+      - apt-transport-https
+
+  - name: Curl link
+    shell:
+      cmd: curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+  - name: Echo
+    shell:
+      cmd: echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list 
+
+  - name: Update package manager
+    apt:
+      update_cache: yes
+
+  - name: Install kubeclt
+    apt:
+      name={{ item }}
+    with_items:
+      - kubectl
+
