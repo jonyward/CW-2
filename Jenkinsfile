@@ -3,8 +3,8 @@ pipeline {
         agent any
 
         environment {
-                imageForBuild = "jonyward/server.js ."
-                image = "jonyward/server.js"
+                imageForBuild = "jonyward/final-app ."
+                image = "jonyward/final-app"
         }
         stages{
                 stage('Build docker image') {
