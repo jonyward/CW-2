@@ -23,7 +23,14 @@ pipeline {
                         }
                 }
 
-                stage('Deploy to K8s') {
+                stage('Build container') {
+                        steps{
+                                echo 'Running the container'
+                                sh "docker run --rm --name app -p 80:80 -d " + image
+                        }
+                }
+
+                                stage('Deploy to K8s') {
                         steps{ 
                                 sshagent(credentials: ['ubuntu']) {
                                                 script{
