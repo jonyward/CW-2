@@ -17,7 +17,7 @@ pipeline {
                 stage('Push to dockerhub') {
                         steps{
                                 echo 'Pushing image to dockerhub'
-                                withDockerRegistry([ credentialsId: "jonyward-dockerhub", url: "" ]){
+                                withDockerRegistry([ credentialsId: "Dockerhub", url: "" ]){
                                         sh "docker push " + image
                                 }
                         }
