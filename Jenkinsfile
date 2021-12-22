@@ -21,5 +21,11 @@ pipeline {
                                 }
                         }
                 }
+
+                stage('Build container') {
+                        steps {
+                                sh "docker run --rm " + image
+                        }
+                }
         }
 }
