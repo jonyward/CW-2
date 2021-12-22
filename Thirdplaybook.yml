@@ -6,8 +6,8 @@
 
   - name: Pull Docker image
     shell:
-      cmd: docker pull jonyward/server.js
+      cmd: docker pull jonyward/final-app
 
   - name: Deploy to kubernetes
     shell:
-      cmd: kubectl create deployment kubernetes-server --image=jonyward/server.js 
+      cmd: kubectl create deployment kubernetes-server --image=jonyward/final-app
