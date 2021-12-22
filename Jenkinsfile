@@ -3,20 +3,21 @@ pipeline {
         agent any
 
         environment {
-                image = "jonyward/app ."
+                imageForBuild = "jonyward/app ."
+                imageForPush = "jonyward/app"
         }
         stages{
                 stage('Build docker image') {
                         steps{
                                 echo 'Building the application'
-                                sh "docker build -t " + image
+                                sh "docker build -t " + imageForBuild
                         }
                 }
 
                 stage('Push to dockerhub') {
                         steps{
                                 echo 'Pushing to dockerhub'
-                                sh "docker push " + image
+                                sh "docker push " + imageForPush
                         }
                 }
         }
