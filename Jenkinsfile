@@ -1,12 +1,13 @@
 pipeline {
+
+        agent
+
         environment {
-                image = 'jonyward/server.js'
+                image = "jonyward/app"
         }
         stage('Build docker image') {
                 steps{
-                        script{
-                                'docker build -t ' + image
-                        }
+                        sh "docker build -t " + image
                 }
         }
 }
