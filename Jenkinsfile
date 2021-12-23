@@ -9,7 +9,7 @@ pipeline {
         stages{
                 stage('Build docker image') {
                         steps{
-                                scrip{
+                                script{
                                 echo 'Building the application'
                                 sh "docker build -t " + imageForBuild
                         }
