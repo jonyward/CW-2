@@ -6,8 +6,8 @@
 
   - name: Create service
     shell:
-      cmd: kubectl expose deployment/kubernetes-server --type="NodePort" --port 8080 --name server-service
+      cmd: kubectl expose deployment/kube-server --type="NodePort" --port 8080 --name kube-service
 
   - name: Scale app
     shell:  
-      cmd: kubectl scale deployments/kubernetes-server --replicas=4
+      cmd: kubectl scale deployments/kube-server --replicas=4

@@ -3,7 +3,7 @@ pipeline {
         agent any
 
         environment {
-                image = "jonyward/final-app"
+                image = "jonyward/final"
         }
         stages{
                 stage('Build docker image') {
@@ -35,7 +35,7 @@ pipeline {
                                                 script{
                                                         try{
                                                                 sh "ssh-keyscan -H 52.91.218.65>> ~/.ssh/known_hosts"
-                                                                sh "ssh ubuntu@52.91.218.65 kubectl set image deployments/kubernetes-server final-app=jonyward/final-app:${env.BUILD_NUMBER}"
+                                                                sh "ssh ubuntu@52.91.218.65 kubectl set image deployments/kube-server final=jonyward/final:${env.BUILD_NUMBER}"
                                                         }catch(error){
                             }
                     }
