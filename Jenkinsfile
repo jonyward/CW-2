@@ -9,19 +9,19 @@ pipeline {
         stages{
                 stage('Build docker image') {
                         steps{
-                                script{
                                 echo 'Building the application'
                                 sh "docker build -t " + imageForBuild
-                        }
                         }
                 }
 
                 stage('Push to dockerhub') {
                         steps{
+                                script{
                                 echo 'Pushing image to dockerhub'
                                 withDockerRegistry([ credentialsId: "Dockerhub", url: "" ]){
                                         image.push("${env.BUILD_NUMBER}")
                                 }
+                        }
                         }
                 }
 
