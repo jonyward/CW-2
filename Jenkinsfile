@@ -16,12 +16,10 @@ pipeline {
 
                 stage('Push to dockerhub') {
                         steps{
-                                script{
                                 echo 'Pushing image to dockerhub'
                                 withDockerRegistry([ credentialsId: "Dockerhub", url: "" ]){
-                                        image.push("${env.BUILD_NUMBER}")
+                                        sh "docker push " + image:$BUILD_NUMBER
                                 }
-                        }
                         }
                 }
 
