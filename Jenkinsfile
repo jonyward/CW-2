@@ -36,7 +36,7 @@ pipeline {
                                                 script{
                                                         try{
                                                                 sh 'ssh-keyscan -H 52.91.218.65>> ~/.ssh/known_hosts'
-                                                                sh 'ssh ubuntu@52.91.218.65 kubectl set image deployments/kubernetes-server final-app=jonyward/final-app'
+                                                                sh 'ssh ubuntu@52.91.218.65 kubectl set image deployments/kubernetes-server final-app=jonyward/final-app:v2'
                                                         }catch(error){
                             }
                     }
