@@ -10,7 +10,7 @@ pipeline {
                 stage('Build docker image') {
                         steps{
                                 echo 'Building the application'
-                                sh "docker build . -t " + imageForBuild + ':${env.BUILD_NUMBER}'
+                                sh "docker build . -t " + imageForBuild + ":${env.BUILD_NUMBER}"
                         }
                 }
 
