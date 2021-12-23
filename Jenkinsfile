@@ -3,14 +3,14 @@ pipeline {
         agent any
 
         environment {
-                imageForBuild = "jonyward/final-app" +env.BUILD_NUMBER + " ."
+                imageForBuild = "jonyward/final-app ."
                 image = "jonyward/final-app"
         }
         stages{
                 stage('Build docker image') {
                         steps{
                                 echo 'Building the application'
-                                sh "docker build -t " + imageForBuild + env.BUILD_NUMBER
+                                sh "docker build -t " + imageForBuild
                         }
                 }
 
@@ -18,7 +18,7 @@ pipeline {
                         steps{
                                 echo 'Pushing image to dockerhub'
                                 withDockerRegistry([ credentialsId: "Dockerhub", url: "" ]){
-                                        sh "docker push " + image + env.BUILD_NUMBER
+                                        sh "docker push " + image
                                 }
                         }
                 }
@@ -36,7 +36,7 @@ pipeline {
                                                 script{
                                                         try{
                                                                 sh 'ssh-keyscan -H 52.91.218.65>> ~/.ssh/known_hosts'
-                                                                sh 'ssh ubuntu@52.91.218.65 kubectl set image deployments/kubernetes-server final-app=jonyward/final-app:$BUILD_NUMBER'
+                                                                sh 'ssh ubuntu@52.91.218.65 kubectl set image deployments/kubernetes-server final-app=jonyward/final-app'
                                                         }catch(error){
                             }
                     }
