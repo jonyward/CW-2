@@ -3,7 +3,7 @@ pipeline {
         agent any
 
         environment {
-                imageForBuild = "jonyward/final-app ."
+                imageForBuild = "jonyward/final-app" +env.BUILD_NUMBER + " ."
                 image = "jonyward/final-app"
         }
         stages{
