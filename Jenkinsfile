@@ -10,7 +10,7 @@ pipeline {
                 stage('Build docker image') {
                         steps{
                                 echo 'Building the application'
-                                sh "docker build -t " + imageForBuild
+                                sh "docker build . -t " + imageForBuild + ':${env.BUILD_NUMBER}'
                         }
                 }
 
@@ -36,7 +36,7 @@ pipeline {
                                                 script{
                                                         try{
                                                                 sh 'ssh-keyscan -H 52.91.218.65>> ~/.ssh/known_hosts'
-                                                                sh 'ssh ubuntu@52.91.218.65 kubectl set image deployments/kubernetes-server final-app=jonyward/final-app:v2'
+                                                                sh 'ssh ubuntu@52.91.218.65 kubectl set image deployments/kubernetes-server final-app=jonyward/final-app:${env.BUILD_NUMBER}'
                                                         }catch(error){
                             }
                     }
