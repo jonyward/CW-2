@@ -34,8 +34,8 @@ pipeline {
                                 sshagent(credentials: ['ubuntu']) {
                                                 script{
                                                         try{
-                                                                sh 'ssh-keyscan -H 52.91.218.65>> ~/.ssh/known_hosts'
-                                                                sh 'ssh ubuntu@52.91.218.65 kubectl set image deployments/kubernetes-server final-app=jonyward/final-app:${env.BUILD_NUMBER}'
+                                                                sh "ssh-keyscan -H 52.91.218.65>> ~/.ssh/known_hosts"
+                                                                sh "ssh ubuntu@52.91.218.65 kubectl set image deployments/kubernetes-server final-app=jonyward/final-app:${env.BUILD_NUMBER}"
                                                         }catch(error){
                             }
                     }
