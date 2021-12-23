@@ -25,7 +25,7 @@ pipeline {
                 stage('Build container') {
                         steps{
                                 echo 'Running the container'
-                                sh "docker run --rm --name app -p 80:80 -d " + image
+                                sh "docker run --rm --name plswork -p 80:80 -d " + image
                         }
                 }
 
