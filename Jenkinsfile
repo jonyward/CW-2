@@ -29,18 +29,18 @@ pipeline {
                         }
                 }
 
-                                stage('Deploy to K8s') {
+                stage('Deploy to K8s') {
                         steps{ 
                                 sshagent(credentials: ['ubuntu']) {
                                                 script{
                                                         try{
-                                                                sh "ssh-keyscan -H 52.91.218.65>> ~/.ssh/known_hosts"
-                                                                sh "ssh ubuntu@52.91.218.65 kubectl set image deployments/kube-server final=" + image
-                                                        }catch(error){
-                            }
-                    }
+                                                                sh "ssh -o StrictHostKeyChecking=no ubuntu@54.226.45.223 kubectl set image deployments/kube-server final=" + image
+                                                        }
+                                                        catch(error){
+                                                                }
+                                                }
+                                }
+                        }
                 }
-            }
-        }
         }
 }
